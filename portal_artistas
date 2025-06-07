@@ -1,0 +1,40 @@
+CRIAR BANCO DE DADOS portal_artistas;
+USE portal_artistas;
+
+CREATE TABLE usuários (
+    id INT AUTO_INCREMENT CHAVE PRIMÁRIA,
+    nome VARCHAR(100),
+    e-mail VARCHAR(100) ÚNICO,
+    senha VARCHAR(100)
+);
+CRIAR TABELA estilos (
+    id INT AUTO_INCREMENT CHAVE PRIMÁRIA,
+    nome VARCHAR(100)
+);
+
+INSERT INTO estilos (nome) VALUES ('Funk'), ('Pintura'), ('Grafite');
+
+CRIAR TABELA artistas (
+    id INT AUTO_INCREMENT CHAVE PRIMÁRIA,
+    nome VARCHAR(100),
+    biografia TEXTO,
+    estilo_id INT,
+    CHAVE ESTRANGEIRA (estilo_id) REFERÊNCIAS estilos(id)
+);
+
+ALTER TABLE artistas ADD COLUMN foto VARCHAR(200);
+
+CRIAR TABELA estilos (
+    id INT AUTO_INCREMENT CHAVE PRIMÁRIA,
+    nome VARCHAR(100) NÃO NULO
+);
+
+CRIAR TABELA posts (
+    id INT AUTO_INCREMENT CHAVE PRIMÁRIA,
+    título VARCHAR(150),
+    conteudo TEXTO,
+    data_postagem TIMESTAMP PADRÃO TIMESTAMP ATUAL,
+    usuário_id INT,
+    CHAVE ESTRANGEIRA (usuario_id) REFERÊNCIAS usuários(id)
+);
+
